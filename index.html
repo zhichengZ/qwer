@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝切换</title>
+	<style type="text/css">
+		#wrap{
+			width: 240px;	
+			height: 50px;
+			position: relative;
+			text-align: center;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		.left{
+			font-size: 40px;
+			position: absolute;
+			left: 0;
+			cursor: pointer;
+			color: skyblue;
+		}
+		.right{
+			font-size: 40px;
+			position: absolute;
+			right: 0;
+			cursor: pointer;
+			color: skyblue;
+		}
+		#inner{
+			width: 150px;
+			height: 50px;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin: auto;
+		}
+		#inner2{
+			width: 900px;
+			height: 50px;
+			/*transition: 1s;*/
+		}
+		#inner2 div{
+			width: 150px;
+			height: 50px;
+			line-height: 50px;
+			background-color: blue;
+			font-size: 25px;
+			float: left;
+			position: relative;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span class="left"><</span>
+		<div id="inner">
+			<div id="inner2">
+				<div>无缝切换1</div>
+				<div>无缝切换2</div>
+				<div>无缝切换3</div>
+				<div>无缝切换4</div>
+				<div>无缝切换5</div>
+				<div>无缝切换1</div>
+
+			</div>
+		</div>
+		<span class="right">></span>
+	</div>
+</body>
+<script type="text/javascript">
+	//获取切换div
+	var inner2=document.getElementById("inner2");
+	//获取左边按钮
+	var left=document.querySelector(".left");
+	//获取右边按钮
+	var right=document.querySelector(".right");
+
+	var index=0;
+	// 添加左边按钮点击事件
+	left.onclick=function(){
+		index--;
+		console.log(index)
+		if(index<0){
+			inner2.style.transition="0s";
+			inner2.style.marginLeft="-750px";
+			index=5;
+		}else{
+			inner2.style.transition="1s";
+			inner2.style.marginLeft=-150*index+"px";
+		}
+
+	}
+	right.onclick=function(){
+		index++;
+		console.log(index)
+		if(index>5){
+			inner2.style.transition="0s";
+			inner2.style.marginLeft="0px";
+			index=0;
+		}else{
+			inner2.style.transition="1s";
+			inner2.style.marginLeft=-150*index+"px";
+		}
+	}
+</script>
+</html>
